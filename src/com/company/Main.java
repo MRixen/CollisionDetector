@@ -20,17 +20,9 @@ public class Main {
     public static void main(String[] args) {
         telegramBot = new TelegramBot();
 
-        // Send message to telegram
-        try {
-            telegramBot.sendMessageToChat();
-        } catch (UnirestException e) {
-            System.out.println("Exception: " + e);
-            e.printStackTrace();
-        }
+        enableDataConnection();
 
-        //enableDataConnection();
-
-        //startServer(4447, "192.168.1.55");
+        startServer(4447, "192.168.1.55");
     }
 
     private static void startServer(int port, String address) {
