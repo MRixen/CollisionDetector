@@ -17,7 +17,7 @@ import static java.awt.SystemColor.text;
 /**
  * Created by Manuel.Rixen on 21-Apr-16.
  */
-public class TelegramBot {
+public class TelegramBotOld {
 
     private final String endpoint = "https://api.telegram.org/bot";
     private final String token = "183181959:AAH0AyU-k8AZNjXRxz-MM36rYOIdQ_iZO5E";

@@ -2,6 +2,10 @@ package com.company;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -9,7 +13,7 @@ import java.net.UnknownHostException;
 public class Main {
 
     // Data for telegram
-    private static TelegramBot telegramBot;
+    private static TelegramBotOld telegramBot;
 
     //Data for sms
     private static Receiver receiver;
@@ -18,11 +22,26 @@ public class Main {
     private static String cmd_modeswitch = "/home/pi/Desktop/cmd_modeswitch.sh";
 
     public static void main(String[] args) {
-        telegramBot = new TelegramBot();
+        BufferedImage bi = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = bi.createGraphics();
+            graphics.setColor(Color.BLACK);
+            graphics.drawLine(50, 50, 50, 100);
 
-        enableDataConnection();
+        try {
+            ImageIO.write(bi, "PNG", new File("C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/Capture.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        startServer(4447, "192.168.1.55");
+
+        //TeleBot teleBot = new TeleBot();
+       // teleBot.sendPhotoToChat(45587174, "C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/Capture.jpg");
+
+        //telegramBot = new TelegramBotOld();
+
+        //enableDataConnection();
+
+        //startServer(4447, "192.168.1.55");
     }
 
     private static void startServer(int port, String address) {
