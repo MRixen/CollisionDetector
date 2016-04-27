@@ -3,7 +3,10 @@ package com.company;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.TelegramBotAdapter;
 import com.pengrad.telegrambot.model.request.InputFile;
+import com.pengrad.telegrambot.model.request.InputFileBytes;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 /**
@@ -24,5 +27,9 @@ public class TeleBot {
     public void sendPhotoToChat(int chatId, String path){
         File imageFile = new File(path);
         bot.sendPhoto(chatId, InputFile.photo(imageFile), "caption", null, null);
+    }
+
+    public void sendPhotoToChat(int chatId, byte[] bytes){
+        bot.sendPhoto(chatId, InputFileBytes.photo(bytes), "caption", null, null);
     }
 }

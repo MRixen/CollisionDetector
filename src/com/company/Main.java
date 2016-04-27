@@ -3,8 +3,10 @@ package com.company;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -20,28 +22,64 @@ public class Main {
     private static Thread receiverThread;
     private static String cmd_sendSms = "/home/pi/Desktop/cmd_sendSms.sh";
     private static String cmd_modeswitch = "/home/pi/Desktop/cmd_modeswitch.sh";
+    private static TeleBot teleBot;
+    private static String pathName = "C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/";
+    private static String[] imageNames = {"top", "left", "right", "front"};
 
     public static void main(String[] args) {
-        BufferedImage bi = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D graphics = bi.createGraphics();
-            graphics.setColor(Color.BLACK);
-            graphics.drawLine(50, 50, 50, 100);
-
-        try {
-            ImageIO.write(bi, "PNG", new File("C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/Capture.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        teleBot = new TeleBot();
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run() {
+                new Main();
+            }
+        });
 
 
-        //TeleBot teleBot = new TeleBot();
-       // teleBot.sendPhotoToChat(45587174, "C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/Capture.jpg");
+
+
 
         //telegramBot = new TelegramBotOld();
 
         //enableDataConnection();
 
         //startServer(4447, "192.168.1.55");
+    }
+
+    public Main() {
+        JFrame frame = new JFrame("Test Card");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setSize(new Dimension(530, 460));
+        for (int i=0;i<=1;i++) {
+
+            frame.getContentPane().removeAll();
+            frame.add(new ImagePanel(pathName+imageNames[i]+".PNG", imageNames[i]));
+            frame.setVisible(true);
+
+            // Get image from JFrame
+            Container content = frame.getContentPane();
+            BufferedImage img = new BufferedImage(content.getWidth(), content.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = img.createGraphics();
+            content.printAll(g2d);
+            g2d.dispose();
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                // Send image to telegram
+                //ImageIO.write(img, "png", new File("C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/topMod.PNG"));
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(img, "jpg", baos);
+                byte[] bytes = baos.toByteArray();
+                teleBot.sendPhotoToChat(45587174, bytes);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     private static void startServer(int port, String address) {
