@@ -39,13 +39,13 @@ public class Server implements Runnable {
     @Override
     public void run() {
         // Switch data stick to mobile data connection mode
-        enableDataConnection();
-        try {
+/*         enableDataConnection();
+       try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
             System.out.println("No waiting executed in Server-Thread. Exception thrown: " + e);
-        }
+        }*/
 
         // Start server to connect to robot client and receive data
         startServer();
@@ -57,27 +57,48 @@ public class Server implements Runnable {
             receiverThread = new Thread(collector.collectorTask);
             receiverThread.start();
 
+        // Add shutdown listener when closing application
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+
+                collector.stopRunRoutine();
+                receiverThread.interrupt();
+            }
+        });
+
+
             // Add listener to receive data
             collector.registerListener(new Collector.EventListener() {
 
 
                 @Override
                 public void onEvent(String data0, String data1) {
-                    //Send message via sms
-                    try {
+
+                    // Get message for collision detect only
+                    if(data1.equals(dataSet.getDiagnoseCmd()[0])) {
+
+                        //Send message via sms
+/*                    try {
                         // Send sms via script-execution
                         Runtime.getRuntime().exec(dataSet.getCmdSendSms());
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.out.println("Sending sms failed in Server-Thread. Exception thrown: " + e);
+                    }*/
+
+                        // Generate images to show gripper location
+                        byte[][] images = gripperLocation.generateImages(dataSet);
+
+                        // Send message and images to telegram
+                        teleBot.sendMessageToChat(dataSet.getChatId(), dataSet.getTelegramChatMessage());
+                        for (int i=0;i<=images.length-1;i++) teleBot.sendPhotoToChat(dataSet.getChatId(), images[i], dataSet.getImageNames()[i]);
+
                     }
-
-                    // Generate images to show gripper location
-                    byte[][] images = gripperLocation.generateImages();
-
-                    // Send message and images to telegram
-                    teleBot.sendMessageToChat(dataSet.getChatId(), dataSet.getTelegramChatMessage());
-                    for (int i=0;i<=images.length-1;i++) teleBot.sendPhotoToChat(dataSet.getChatId(), images[i]);
+                    // Get message for logging only
+                    else if(data1.equals(dataSet.getDiagnoseCmd()[1])){
+                        teleBot.sendMessageToChat(dataSet.getChatId(), "Logging executed with message content:" + data0);
+                    }
                 }
 
                 @Override
@@ -85,15 +106,6 @@ public class Server implements Runnable {
 
                 }
 
-            });
-
-            // Add shutdown listener when closing application
-            Runtime.getRuntime().addShutdownHook(new Thread() {
-                @Override
-                public void run() {
-                    collector.stopRunRoutine();
-                    receiverThread.interrupt();
-                }
             });
     }
 

@@ -24,12 +24,12 @@ public class TeleBot {
         bot.sendMessage(chatId, message);
     }
 
-    public void sendPhotoToChat(int chatId, String path){
+    public void sendPhotoToChat(int chatId, String path, String caption){
         File imageFile = new File(path);
-        bot.sendPhoto(chatId, InputFile.photo(imageFile), "caption", null, null);
+        bot.sendPhoto(chatId, InputFile.photo(imageFile), caption, null, null);
     }
 
-    public void sendPhotoToChat(int chatId, byte[] bytes){
-        bot.sendPhoto(chatId, InputFileBytes.photo(bytes), "caption", null, null);
+    public void sendPhotoToChat(int chatId, byte[] bytes, String caption){
+        bot.sendPhoto(chatId, InputFileBytes.photo(bytes), caption, null, null);
     }
 }

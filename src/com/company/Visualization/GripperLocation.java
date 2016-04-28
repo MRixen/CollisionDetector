@@ -1,5 +1,7 @@
 package com.company.Visualization;
 
+import com.company.DataSet;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +14,7 @@ import java.io.IOException;
  */
 public class GripperLocation {
 
-    private String pathName = "C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/";
-    private String[] imageNames = {"top", "left", "right", "front"};
-
-    public byte[][] generateImages() {
+    public byte[][] generateImages(DataSet dataSet) {
         byte[][] imageArray = new byte[4][];
         JFrame frame = new JFrame("Gripper Location");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,10 +22,10 @@ public class GripperLocation {
         frame.setSize(new Dimension(530, 460));
 
         // Generate images one after the other to show gripper location
-        for (int i=0;i<=imageNames.length-1;i++) {
+        for (int i=0;i<=dataSet.getImageNames().length-1;i++) {
 
             frame.getContentPane().removeAll();
-            frame.add(new ImagePanel(pathName+imageNames[i]+".PNG", imageNames[i]));
+            frame.add(new ImagePanel(dataSet.getImagePathName()+dataSet.getImageNames()[i]+".png", dataSet.getImageNames()[i]));
             frame.setVisible(true);
 
             // Get image from JFrame
