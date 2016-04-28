@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class GripperLocation {
 
-    public byte[][] generateImages(DataSet dataSet) {
+    public byte[][] generateImages(DataSet dataSet, String[] coordinates) {
         byte[][] imageArray = new byte[4][];
         JFrame frame = new JFrame("Gripper Location");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,10 +22,11 @@ public class GripperLocation {
         frame.setSize(new Dimension(530, 460));
 
         // Generate images one after the other to show gripper location
-        for (int i=0;i<=dataSet.getImageNames().length-1;i++) {
+        //for (int i=0;i<=dataSet.getImageNames().length-1;i++) {
+        for (int i=1;i<=1;i++) {
 
             frame.getContentPane().removeAll();
-            frame.add(new ImagePanel(dataSet.getImagePathName()+dataSet.getImageNames()[i]+".png", dataSet.getImageNames()[i]));
+            frame.add(new ImagePanel(dataSet.getImagePathName()+dataSet.getImageNames()[i]+".png", dataSet.getImageNames()[i], coordinates));
             frame.setVisible(true);
 
             // Get image from JFrame

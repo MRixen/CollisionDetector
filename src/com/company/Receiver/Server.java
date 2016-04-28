@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+
 /**
  * Created by Manuel.Rixen on 28.04.2016.
  */
@@ -86,9 +88,14 @@ public class Server implements Runnable {
                         e.printStackTrace();
                         System.out.println("Sending sms failed in Server-Thread. Exception thrown: " + e);
                     }*/
+                        // Extract x, y, z from data0
+                        String[] tempMessage = data0.split(":");
+                        System.out.println("x: " + tempMessage[0]);
+                        System.out.println("y: " + tempMessage[1]);
+                        System.out.println("z: " + tempMessage[2]);
 
                         // Generate images to show gripper location
-                        byte[][] images = gripperLocation.generateImages(dataSet);
+                        byte[][] images = gripperLocation.generateImages(dataSet, tempMessage);
 
                         // Send message and images to telegram
                         teleBot.sendMessageToChat(dataSet.getChatId(), dataSet.getTelegramChatMessage());
@@ -97,7 +104,7 @@ public class Server implements Runnable {
                     }
                     // Get message for logging only
                     else if(data1.equals(dataSet.getDiagnoseCmd()[1])){
-                        teleBot.sendMessageToChat(dataSet.getChatId(), "Logging executed with message content:" + data0);
+                        teleBot.sendMessageToChat(dataSet.getChatId(), "Logging executed with message content: " + data0);
                     }
                 }
 

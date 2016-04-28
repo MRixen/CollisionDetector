@@ -11,10 +11,12 @@ import java.io.IOException;
  * Created by Manuel.Rixen on 27.04.2016.
  */
 public class ImagePanel extends JPanel {
+    private final String[] coordinates;
     private String viewDescription;
-    BufferedImage img1;
+    private BufferedImage img1;
 
-    public ImagePanel(String imagePath, String viewDescription) {
+    public ImagePanel(String imagePath, String viewDescription, String[] coordinates) {
+        this.coordinates = coordinates;
         setLayout(new GridBagLayout());
         this.viewDescription = viewDescription;
         try {
@@ -40,26 +42,26 @@ public class ImagePanel extends JPanel {
     private BufferedImage drawSomething(){
         int yOffset = 0;
         int xOffset = 0;
-        int xCoordinate = 0;
-        int yCoordinate = 0;
-        int zCoordinate = 0;
+        float yCoordinate = Float.parseFloat(coordinates[0]);
+        float xCoordinate = Float.parseFloat(coordinates[1]);
+        float zCoordinate = Float.parseFloat(coordinates[2]);
         int lineLength = 20;
         int circDiameter = 40;
+        float scaleFactorXtop = 0.35f, scaleFactorYtop = 0.018f, scaleFactorZtop = 1f;
 
         // Calculate x / y offsets for the view (top, left, right, etc.)
         if(viewDescription.equals("top")) {
             yOffset = 230;
             xOffset = 290;
-            // TODO Remove this (its for simulation only)
-            xCoordinate = 150;
-            yCoordinate = 75;
+            xCoordinate = xCoordinate*(-scaleFactorXtop);
+            yCoordinate = yCoordinate*(-scaleFactorYtop);
         }
         else if(viewDescription.equals("left")){
-            yOffset = 300;
-            xOffset = 320;
+            yOffset = 500;
+            xOffset = 360;
             // TODO Remove this (its for simulation only)
-            xCoordinate = 70;
-            zCoordinate = 75;
+            xCoordinate = -20;
+            zCoordinate = 0;
         }
         else if(viewDescription.equals("right")){
             yOffset = 230;
@@ -80,9 +82,9 @@ public class ImagePanel extends JPanel {
         Graphics2D graphics = bi.createGraphics();
         graphics.setStroke(new BasicStroke(8));
         graphics.setColor(Color.BLUE);
-        graphics.drawLine(xOffset - (xCoordinate + (lineLength / 2)), yOffset - (yCoordinate + (lineLength / 2)), xOffset - (xCoordinate - (lineLength / 2)), yOffset - (yCoordinate - (lineLength / 2)));
-        graphics.drawLine(xOffset - (xCoordinate + (lineLength / 2) - 20), yOffset - (yCoordinate + (lineLength / 2)), xOffset - (xCoordinate - (lineLength / 2)) - 20, yOffset - (yCoordinate - (lineLength / 2)));
-        graphics.drawOval(xOffset - xCoordinate - lineLength, yOffset - yCoordinate - lineLength, circDiameter, circDiameter);
+        graphics.drawLine(xOffset - (((int) xCoordinate) + (lineLength / 2)), yOffset - (((int) yCoordinate) + (lineLength / 2)), xOffset - (((int) xCoordinate) - (lineLength / 2)), yOffset - (((int) yCoordinate) - (lineLength / 2)));
+        graphics.drawLine(xOffset - (((int) xCoordinate) + (lineLength / 2) - 20), yOffset - (((int) yCoordinate) + (lineLength / 2)), xOffset - (((int) xCoordinate) - (lineLength / 2)) - 20, yOffset - (((int) yCoordinate) - (lineLength / 2)));
+        graphics.drawOval(xOffset - ((int) xCoordinate) - lineLength, yOffset - ((int) yCoordinate) - lineLength, circDiameter, circDiameter);
         return bi;
     }
 }
