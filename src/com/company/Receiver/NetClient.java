@@ -1,4 +1,6 @@
-package com.company;
+package com.company.Receiver;
+
+import com.company.Receiver.Collector;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.net.Socket;
  * Created by Manuel.Rixen on 16-Apr-16.
  */
 public class NetClient {
-    private final Receiver receiver;
+    private final Collector collector;
     private final InetAddress ip;
     // TODO Close application when in read-routine
 
@@ -24,9 +26,9 @@ public class NetClient {
     private boolean isRunning;
     private ServerSocket serverSocket;
 
-    public NetClient(int port, InetAddress ip, Receiver receiver) {
+    public NetClient(int port, InetAddress ip, Collector collector) {
         this.port = port;
-        this.receiver = receiver;
+        this.collector = collector;
         this.ip = ip;
     }
 
@@ -121,7 +123,7 @@ public class NetClient {
 
             } catch (Exception e) {
                 isRunning = false;
-                receiver.stopRunRoutine();
+                collector.stopRunRoutine();
             }
         }
         return new String[]{"", ""};

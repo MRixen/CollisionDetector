@@ -3,6 +3,7 @@
     <properties maven-id="org.jogamp.jogl:jogl-all:2.1.2" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/jogl-all-2.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jogl-all-2.1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

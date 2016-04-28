@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Visualization;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -6,10 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by Manuel.Rixen on 27.04.2016.

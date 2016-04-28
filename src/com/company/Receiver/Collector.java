@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Receiver;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by Manuel.Rixen on 16-Apr-16.
  */
-public class Receiver {
+public class Collector {
 
     private int port;
     private String data[] = new String[]{"", ""};
@@ -14,11 +14,11 @@ public class Receiver {
     private NetClient nc;
     private boolean isRunning;
 
-    public Receiver(int port, InetAddress ip) {
+    public Collector(int port, InetAddress ip) {
         if (nc == null) nc = new NetClient(port, ip, this);
     }
 
-    Runnable receiverTask = () -> {
+    Runnable collectorTask = () -> {
         while(true) {
             isRunning = true;
             if (nc.connectWithClient()) {

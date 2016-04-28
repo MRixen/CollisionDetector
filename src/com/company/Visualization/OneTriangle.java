@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Visualization;
 
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;

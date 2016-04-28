@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Receiver;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.TelegramBotAdapter;
@@ -16,8 +16,8 @@ public class TeleBot {
 
     private TelegramBot bot;
 
-    public TeleBot(){
-        bot = TelegramBotAdapter.build("183181959:AAH0AyU-k8AZNjXRxz-MM36rYOIdQ_iZO5E");
+    public TeleBot(String teleBotToken){
+        bot = TelegramBotAdapter.build(teleBotToken);
     }
 
     public void sendMessageToChat(int chatId, String message){
