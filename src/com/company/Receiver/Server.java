@@ -21,9 +21,9 @@ public class Server implements Runnable {
     private DataSet dataSet;
     private TeleBot teleBot;
 
-    public Server(){
+    public Server(DataSet dataSet){
         gripperLocation = new GripperLocation();
-        dataSet = new DataSet();
+        this.dataSet = dataSet;
         this.teleBot = dataSet.getTeleBot();
 
         // Set ip address
@@ -87,7 +87,7 @@ public class Server implements Runnable {
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.out.println("Sending sms failed in Server-Thread. Exception thrown: " + e);
-                    }*/
+                    }
                         // Extract x, y, z from data0
                         String[] tempMessage = data0.split(":");
                         System.out.println("x: " + tempMessage[0]);
@@ -100,11 +100,19 @@ public class Server implements Runnable {
                         // Send message and images to telegram
                         teleBot.sendMessageToChat(dataSet.getChatId(), dataSet.getTelegramChatMessage());
                         for (int i=0;i<=images.length-1;i++) teleBot.sendPhotoToChat(dataSet.getChatId(), images[i], dataSet.getImageNames()[i]);
-
+*/
                     }
                     // Get message for logging only
                     else if(data1.equals(dataSet.getDiagnoseCmd()[1])){
-                        teleBot.sendMessageToChat(dataSet.getChatId(), "Logging executed with message content: " + data0);
+                        //teleBot.sendMessageToChat(dataSet.getChatId(), "Logging executed with message content: " + data0);
+                    }
+                    else if(data1.equals(dataSet.getDiagnoseCmd()[2])){
+                        String[] tempMessage = data0.split(":");
+                        dataSet.setProduction_ist(tempMessage[0]);
+                        dataSet.setProduction_soll(tempMessage[1]);
+                        dataSet.setProduction_trend(tempMessage[2]);
+                        dataSet.setCycleTime(tempMessage[3]);
+                        dataSet.setCycleTimeMean(tempMessage[4]);
                     }
                 }
 
