@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
-
 /**
  * Created by Manuel.Rixen on 28.04.2016.
  */
@@ -20,11 +18,15 @@ public class Server implements Runnable {
     private Thread receiverThread;
     private DataSet dataSet;
     private TeleBot teleBot;
+    private String[] tempMachineData;
+    private String[][] tempArticleData;
 
     public Server(DataSet dataSet){
         gripperLocation = new GripperLocation();
         this.dataSet = dataSet;
         this.teleBot = dataSet.getTeleBot();
+        tempMachineData = new String[dataSet.get_MAX_MACHINE_DATA_CONTENT()];
+        tempArticleData = new String[dataSet.get_MAX_ARTICLE_COUNTER()][dataSet.get_MAX_ARTICLE_COLUMN()];
 
         // Set ip address
         try {
@@ -79,6 +81,7 @@ public class Server implements Runnable {
 
                     // Get message for collision detect only
                     if(data1.equals(dataSet.getDiagnoseCmd()[0])) {
+                        // GET COLLISION DATA
 
                         //Send message via sms
 /*                    try {
@@ -107,13 +110,28 @@ public class Server implements Runnable {
                         //teleBot.sendMessageToChat(dataSet.getChatId(), "Logging executed with message content: " + data0);
                     }
                     else if(data1.equals(dataSet.getDiagnoseCmd()[2])){
+                        // GET CYLE TIME
                         String[] tempMessage = data0.split(":");
                         dataSet.setProduction_ist(tempMessage[0]);
-                        dataSet.setProduction_soll(tempMessage[1]);
-                        dataSet.setProduction_trend(tempMessage[2]);
+                        // TODO: Make it able to choose (set soll value in .MOD file or in the browser)
+                        //dataSet.setProduction_soll(tempMessage[1]);
+                        dataSet.setProduction_trend(tempMessage[3]);
                         dataSet.setCycleTime(tempMessage[3]);
                         dataSet.setCycleTimeMean(tempMessage[4]);
                     }
+                    else if(data1.equals(dataSet.getDiagnoseCmd()[3])){
+                        // GET MACHINE DATA
+                        String[] tempMessage = data0.split(":");
+                        for (int i=0;i<=dataSet.get_MAX_MACHINE_DATA_CONTENT()-1;i++) tempMachineData[Integer.parseInt(tempMessage[0])] = tempMessage[1];
+                        dataSet.setMachineData(tempMachineData);
+                    }
+                else if(data1.equals(dataSet.getDiagnoseCmd()[4])){
+                    // GET ARTICLE DATA
+                    String[] tempMessage = data0.split(":");
+
+                    for (int i=0;i<=dataSet.get_MAX_ARTICLE_COLUMN()-1;i++) tempArticleData[0][i] = tempMessage[i];
+                    dataSet.setArticleData(tempArticleData);
+                }
                 }
 
                 @Override

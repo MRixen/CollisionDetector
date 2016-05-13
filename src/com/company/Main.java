@@ -14,7 +14,7 @@ public class Main {
 
         dataSet = new DataSet();
         // Start server to receive event messages from robot controller and send messages via sms and telegram
-        //new Server(dataSet);
+        new Server(dataSet);
 
         // TEST FOR WEBSERVER
         Thread webServerThread = new Thread(new Runnable() {

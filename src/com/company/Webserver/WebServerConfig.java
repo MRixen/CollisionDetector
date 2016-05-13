@@ -26,23 +26,17 @@ public class WebServerConfig extends NanoHTTPD {
         String uri = session.getUri();
 
         String msg = dataSet.getHtmlCodeConfig();
-        Map<String, String> parms = session.getParms();
-        if ((parms.get("username") == null) ) {
-            msg += "<form action='?' method='get'>\n" + "  <p>Enter your mobile number and hit enter: <input type='text' name='username'></p>\n" + "</form>\n";
-        }
-        if ((parms.get("sollvalue") == null) ) {
-            msg += "<form action='?' method='get'>\n" + "  <p>Enter the soll value hit enter: <input type='text' name='sollvalue'></p>\n" + "</form>\n";
-        }
-        msg += "</body></html>\n";
+        Map<String, String> params = session.getParms();
+        String mobileNumberTemp = params.get("username");
+        String sollvalueTemp = params.get("sollvalue");
+        String myButton = params.get("systemupdate");
 
-            //msg += "<p>You entered: " + parms.get("username") + "</p>";
-            mobileNumber = parms.get("username");
-            //dataSet.setProduction_soll(parms.get("sollvalue"));
+        if(mobileNumberTemp != null) mobileNumber = params.get("username");
+        if(sollvalueTemp != null) dataSet.setProduction_soll(params.get("sollvalue"));
+        if(myButton != null) System.out.println("myButton");
 
-            System.out.println("mobileNumber: " + mobileNumber);
-            //System.out.println("Production_soll: " + dataSet.getProduction_soll());
-
-
+        System.out.println("mobileNumber: " + mobileNumber);
+        System.out.println("sollvalue: " + dataSet.getProduction_soll());
 
         return newFixedLengthResponse(msg);
     }
