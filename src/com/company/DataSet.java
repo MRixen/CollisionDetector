@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Receiver.TeleBot;
+import com.company.Receiver.Wordpress;
 
 /**
  * Created by Manuel.Rixen on 28.04.2016.
@@ -202,191 +203,289 @@ public class DataSet {
     }
 
     public String getHtmlCodeData(){
-        String htmlCode = "<!doctype html>\n" +
-                "<html>\n" +
+        String htmlCode = "<!DOCTYPE html>\n" +
+                "\n" +
+                "<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
                 "<head>\n" +
-                "\t<title></title>\n" +
-                "<META HTTP-EQUIV=\"refresh\" CONTENT=\"" + REFRESH_TIME + "\">" +
+                "    <meta charset=\"utf-8\" />\n" +
+                "    <title>Roboter Informations-System</title>\n" +
+                "    <META HTTP-EQUIV=\"refresh\" CONTENT=\"2\"/>\n" +
+                "    <style>\n" +
+                "        header {\n" +
+                "            background-color: #02489D;\n" +
+                "            color: white;\n" +
+                "            text-align: center;\n" +
+                "            padding: 5px;\n" +
+                "        }\n" +
+                "\n" +
+                "        nav {\n" +
+                "            line-height: 30px;\n" +
+                "            background-color: #eeeeee;\n" +
+                "            height: 600px;           \n" +
+                "            width: 300px;\n" +
+                "            float: left;\n" +
+                "            padding: 5px;\n" +
+                "        }\n" +
+                "\n" +
+                "        section {           \n" +
+                "            height: 600px;           \n" +
+                "            width:600px;\n" +
+                "            float: left;\n" +
+                "            padding: 10px;\n" +
+                "            background-color: #eeeeee;\n" +
+                "        }\n" +
+                "\n" +
+                "        article {\n" +
+                "            height: 600px;\n" +
+                "            float: left;            \n" +
+                "            width:600px;\n" +
+                "            padding: 10px;\n" +
+                "            background-color: #eeeeee;\n" +
+                "        }\n" +
+                "\n" +
+                "\n" +
+                "        footer {\n" +
+                "            background-color: #02489D;\n" +
+                "            color: white;\n" +
+                "            clear: both;\n" +
+                "            text-align: center;\n" +
+                "            padding: 5px;\n" +
+                "        }\n" +
+                "\n" +
+                "        h1{\n" +
+                "            font-size: xx-large;\n" +
+                "            color: white;\n" +
+                "        }\n" +
+                "\n" +
+                "        table, th, td {\n" +
+                "        border: 2px solid black;\n" +
+                "        border-collapse: collapse;\n" +
+                "        }\n" +
+                "\n" +
+                "        th, td {\n" +
+                "            padding: 10px;\n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_col_group{\n" +
+                "            background-color: white;           \n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_col_1{\n" +
+                "            width: 120px\n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_col_2{\n" +
+                "            width: 80px\n" +
+                "        }\n" +
+                "\n" +
+                "        \n" +
+                "        #table_nav_col_articledata{\n" +
+                "            width: 180px;\n" +
+                "            height: 60px;            \n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_col_information{\n" +
+                "            width: 120px;\n" +
+                "            height: 60px;            \n" +
+                "        }\n" +
+                "        \n" +
+                "        #table_nav_col_3{\n" +
+                "            width: 80px\n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_cell_heavy{\n" +
+                "            color: black;\n" +
+                "            font-weight: bold;   \n" +
+                "            font-size: large;   \n" +
+                "            height: 40px;     \n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_cell_low{\n" +
+                "            color: black; \n" +
+                "            font-size: medium;   \n" +
+                "            height: 60px;     \n" +
+                "        }\n" +
+                "\n" +
+                "        #table_nav_cell_low_small{\n" +
+                "            color: black; \n" +
+                "            font-size: medium;   \n" +
+                "            height: 30px;     \n" +
+                "        }\n" +
+                "\n" +
+                "        caption{\n" +
+                "            color: black;\n" +
+                "            font-weight: bold;  \n" +
+                "            font-size: small;  \n" +
+                "            text-align: left\n" +
+                "        }\n" +
+                "\n" +
+                "        #whole_document{\n" +
+                "            margin: auto 10px;\n" +
+                "            width: auto;\n" +
+                "            height: 2000px;\n" +
+                "            background-color: #eeeeee;\n" +
+                "        }\n" +
+                "    </style>\n" +
                 "</head>\n" +
-                "<body>\n" +
-                "<table>\n" +
-                "\t<tbody>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<td style=\"border-width:0px; border-color:Black ; border-style :groove ;\" width=\"650\">\n" +
-                "\t\t\t<h4 style=\"background: silver\">Robot Information System</strong></h4>\n" +
-                "\t\t\t</td>\n" +
-                "\t</tbody>\n" +
-                "</table>\n" +
                 "\n" +
-                "<div style=\"background:#eee;border:0px solid #ccc;padding:5px 10px;\">Production</div>\n" +
+                "<body id=\"whole_document\">\n" +
                 "\n" +
-                "<table>\n" +
-                "\t<tbody>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<td style=\"border-width:0px; border-color:Black ; border-style :groove ;\" width=\"200\">\n" +
-                "\t\t\t<p>&nbsp;</p>\n" +
+                "    <header>\n" +
+                "        <h1>Informations-System</h1>\n" +
+                "    </header>\n" +
                 "\n" +
-                "\t\t\t<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:150px;\">\n" +
-                "\t\t\t<caption>Actual data</caption>" +
-                "\t\t\t\t<tbody>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>Soll</td>\n" +
-                "\t\t\t\t\t\t<td>"+ production_soll +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>Ist</td>\n" +
-                "\t\t\t\t\t\t<td>" + production_ist + "</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>Trend</td>\n" +
-                "\t\t\t\t\t\t<td>" + production_trend + "</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t</tbody>\n" +
-                "\t\t\t</table>\n" +
+                "    <nav>\n" +
+                "        <table id=\"table_nav\">\n" +
+                "            <caption>Aktuelle Daten</caption>\n" +
+                "            <colgroup id=\"table_nav_col_group\">\n" +
+                "                <col id=\"table_nav_col_1\">\n" +
+                "                <col id=\"table_nav_col_2\">\n" +
+                "            </colgroup>\n" +
+                "            <tbody id=\"table_nav_row_group\">\n" +
+                "                <tr id=\"table_nav_row_1\">\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Soll</td>\n" +
+                "                    <td id=\"table_nav_cell_low_small\"> "+production_soll+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_2\">\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Ist</td>\n" +
+                "                    <td id=\"table_nav_cell_low_small\"> "+production_ist+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Trend</td>\n" +
+                "                    <td id=\"table_nav_cell_low_small\"> "+production_trend+" </td>\n" +
+                "                </tr>\n" +
                 "\n" +
-                "<p>&nbsp;</p>\n" +
+                "            </tbody>\n" +
+                "            </table>\n" +
+                "        <p></p>\n" +
+                "        <table id=\"table_nav\">\n" +
+                "            <caption></caption>\n" +
+                "            <colgroup id=\"table_nav_col_group\">\n" +
+                "                <col id=\"table_nav_col_1\">\n" +
+                "                <col id=\"table_nav_col_2\">\n" +
+                "            </colgroup>\n" +
+                "            <tbody id=\"table_nav_row_group\">\n" +
+                "                <tr id=\"table_nav_row_4\">\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Zykluszeit</td>\n" +
+                "                    <td id=\"table_nav_cell_low_small\"> "+cycleTime+" </td>\n" +
+                "                </tr>\n" +
+                "            </tbody>\n" +
+                "        </table>\n" +
+                "</nav>\n" +
                 "\n" +
-                "\t\t\t<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:150px;\">\n" +
-                "\t\t\t\t<tbody>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>Cycle time</td>\n" +
-                "\t\t\t\t\t\t<td>"+ cycleTime +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t</tbody>\n" +
-                "\t\t\t</table>\n" +
+                "    <section>\n" +
+                "        <table id=\"table_nav\">\n" +
+                "            <caption>Artikeldaten</caption>\n" +
+                "            <colgroup id=\"table_nav_col_group\">\n" +
+                "                <col id=\"table_nav_col_articledata\">\n" +
+                "                <col id=\"table_nav_col_articledata\">\n" +
+                "                <col id=\"table_nav_col_articledata\">\n" +
+                "            </colgroup>\n" +
+                "            <tbody id=\"table_nav_row_group\">\n" +
+                "                <tr id=\"table_nav_row_1\">\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Name</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Anzahl</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Zykluszeit</td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_2\">\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[0][0]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[0][1]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[0][2]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[1][0]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[1][1]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[1][2]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[2][0]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[2][1]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[2][2]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[3][0]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[3][1]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[3][2]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[4][0]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[4][1]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+articleData[4][2]+" </td>\n" +
+                "                </tr>\n" +
+                "            </tbody>\n" +
+                "        </table>\n" +
+                "    </section>\n" +
                 "\n" +
-                "\t\t\t<p>&nbsp;</p>\n" +
-                "\t\t\t</td>\n" +
-                "\t\t\t<td style=\"border-width:0px; border-color:Black ; border-style :groove ;\" width=\"600\">\n" +
-                "\t\t\t<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px;\">\n" +
-                "\t\t\t<caption>Produced article list</caption>" +
-                "\t\t\t\t<thead>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<th scope=\"col\">Name</th>\n" +
-                "\t\t\t\t\t\t<th scope=\"col\">Amount</th>\n" +
-                "\t\t\t\t\t\t<th scope=\"col\">Cycletime average</th>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t</thead>\n" +
-                "\t\t\t\t<tbody>\n" +
-                "\t\t\t\t\t<tr>\n" +
-
-                "\t\t\t\t\t\t<td>"+ articleData[0][0] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[0][1] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[0][2] +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[1][0] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[1][1] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[1][2] +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[2][0] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[2][1] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[2][2] +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[3][0] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[3][1] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[3][2] +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t\t<tr>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[4][0] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[4][1] +"</td>\n" +
-                "\t\t\t\t\t\t<td>"+ articleData[4][2] +"</td>\n" +
-                "\t\t\t\t\t</tr>\n" +
-                "\t\t\t\t</tbody>\n" +
-                "\t\t\t</table>\n" +
-                "\t\t\t</td>\n" +
-                "\t\t</tr>\n" +
-                "\t</tbody>\n" +
-                "</table>\n" +
+                "    <article>\n" +
+                "        <table id=\"table_nav\">\n" +
+                "            <caption>Maschinendaten</caption>\n" +
+                "            <colgroup id=\"table_nav_col_group\">\n" +
+                "                <col id=\"table_nav_col_information\">\n" +
+                "                <col id=\"table_nav_col_information\">\n" +
+                "                <col id=\"table_nav_col_information\">\n" +
+                "                <col id=\"table_nav_col_information\">\n" +
+                "                <col id=\"table_nav_col_information\">\n" +
+                "                <col id=\"table_nav_col_information\">\n" +
+                "            </colgroup>\n" +
+                "            <tbody id=\"table_nav_row_group\">\n" +
+                "                <tr id=\"table_nav_row_1\">\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Name</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Wert</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Name</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Wert</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Name</td>\n" +
+                "                    <td id=\"table_nav_cell_heavy\">Wert</td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_2\">\n" +
+                "                    <td id=\"table_nav_cell_low\">Maschinen-Typ</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[0]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Projekt-Nr.</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[1]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Baujahr</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[2]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\">Abnahme rbc</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[3]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Abnahme Scheideler</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[4]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Serien-Nr.</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[5]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\">Software-Nr.</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[6]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Robotertyp</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[7]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Steuerungs-ID</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[8]+" </td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\">HMI Sprache</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[9]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Roboter Vmax [mm/s]</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[10]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"></td>\n" +
+                "                    <td id=\"table_nav_cell_low\"></td>\n" +
+                "                </tr>\n" +
+                "                <tr id=\"table_nav_row_3\">\n" +
+                "                    <td id=\"table_nav_cell_low\">Betriebsstunden</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[11]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\">Aktueller OV [%]</td>\n" +
+                "                    <td id=\"table_nav_cell_low\"> "+machineData[12]+" </td>\n" +
+                "                    <td id=\"table_nav_cell_low\"></td>\n" +
+                "                    <td id=\"table_nav_cell_low\"></td>\n" +
+                "                </tr>            \n" +
+                "            </tbody>\n" +
+                "        </table>\n" +
+                "     </article>\n" +
                 "\n" +
-                "<div style=\"background:#eee;border:1px solid #ccc;padding:5px 10px;\">Environment</div>\n" +
+                "    <footer>\n" +
+                "        Copyright rbc Fördertechnik GmbH\n" +
+                "    </footer>\n" +
                 "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<table align=\"left\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:450px;\">\n" +
-                "\t\t\t<caption>Machine data</caption>" +
-                "\t<tbody>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Machine name</th>\n" +
-                "\t\t\t<td>" + machineData[0] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Project No.</th>\n" +
-                "\t\t\t<td>" + machineData[1] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Build year</th>\n" +
-                "\t\t\t<td>" + machineData[2] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Pre. Accept.</th>\n" +
-                "\t\t\t<td>" + machineData[3] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Fin. Accept.</th>\n" +
-                "\t\t\t<td>" + machineData[4] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Serial No.</th>\n" +
-                "\t\t\t<td>" + machineData[5] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Software serial</th>\n" +
-                "\t\t\t<td>" + machineData[6] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Robot type</th>\n" +
-                "\t\t\t<td>" + machineData[7] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Controller id</th>\n" +
-                "\t\t\t<td>" + machineData[8] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">IP address</th>\n" +
-                "\t\t\t<td>" + machineData[9] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">HMI language</th>\n" +
-                "\t\t\t<td>" + machineData[10] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Rob speed [mm/s]</th>\n" +
-                "\t\t\t<td>" + machineData[11] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Act. Override [%]</th>\n" +
-                "\t\t\t<td>" + machineData[12] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t\t<tr>\n" +
-                "\t\t\t<th scope=\"row\" style=\"text-align: left;\">Duty time [h]</th>\n" +
-                "\t\t\t<td>" + machineData[13] + "</td>\n" +
-                "\t\t</tr>\n" +
-                "\t</tbody>\n" +
-                "</table>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n" +
-                "<p>&nbsp;</p>\n" +
-                "\n";
+                "</body>\n" +
+                "</html>";
 
         return htmlCode;
     }

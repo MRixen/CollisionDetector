@@ -3,10 +3,26 @@
     <properties maven-id="org.nanohttpd:nanohttpd:2.2.0" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.ideaLibSources/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nanohttpd-2.2.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -17,5 +17,6 @@
     <orderEntry type="library" name="org.jogamp.gluegen:gluegen-rt-main:2.3.1" level="project" />
     <orderEntry type="library" name="org.jogamp.jogl:jogl-all:2.1.2" level="project" />
     <orderEntry type="library" name="org.nanohttpd:nanohttpd:2.2.0" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-3.1.14-bin" level="project" />
   </component>
 </module>

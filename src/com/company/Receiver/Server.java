@@ -20,13 +20,17 @@ public class Server implements Runnable {
     private TeleBot teleBot;
     private String[] tempMachineData;
     private String[][] tempArticleData;
+    private Wordpress wordpress;
 
-    public Server(DataSet dataSet){
+    public Server(DataSet dataSet, Wordpress wordpress){
         gripperLocation = new GripperLocation();
+        this.wordpress = wordpress;
         this.dataSet = dataSet;
         this.teleBot = dataSet.getTeleBot();
         tempMachineData = new String[dataSet.get_MAX_MACHINE_DATA_CONTENT()];
         tempArticleData = new String[dataSet.get_MAX_ARTICLE_COUNTER()][dataSet.get_MAX_ARTICLE_COLUMN()];
+
+        this.wordpress.connectToDb();
 
         // Set ip address
         try {
@@ -65,7 +69,7 @@ public class Server implements Runnable {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-
+                wordpress.disconnectFromDb();
                 collector.stopRunRoutine();
                 receiverThread.interrupt();
             }
@@ -112,25 +116,26 @@ public class Server implements Runnable {
                     else if(data1.equals(dataSet.getDiagnoseCmd()[2])){
                         // GET CYLE TIME
                         String[] tempMessage = data0.split(":");
-                        dataSet.setProduction_ist(tempMessage[0]);
+                        wordpress.updateProcessState("Ist", tempMessage[0]);
                         // TODO: Make it able to choose (set soll value in .MOD file or in the browser)
-                        //dataSet.setProduction_soll(tempMessage[1]);
-                        dataSet.setProduction_trend(tempMessage[3]);
-                        dataSet.setCycleTime(tempMessage[3]);
-                        dataSet.setCycleTimeMean(tempMessage[4]);
+                        wordpress.updateProcessState("Soll", tempMessage[1]);
+                        System.out.println("tempMessage[1]: " + tempMessage[1]);
+                        wordpress.updateProcessState("Trend", String.valueOf((int)((60/Float.parseFloat(tempMessage[3]))*60)));
+                        wordpress.updateProcessState("Cycletime", tempMessage[3]);
+//                        dataSet.setCycleTimeMean(tempMessage[4]);
                     }
                     else if(data1.equals(dataSet.getDiagnoseCmd()[3])){
                         // GET MACHINE DATA
                         String[] tempMessage = data0.split(":");
                         for (int i=0;i<=dataSet.get_MAX_MACHINE_DATA_CONTENT()-1;i++) tempMachineData[Integer.parseInt(tempMessage[0])] = tempMessage[1];
-                        dataSet.setMachineData(tempMachineData);
+//                        dataSet.setMachineData(tempMachineData);
                     }
                 else if(data1.equals(dataSet.getDiagnoseCmd()[4])){
                     // GET ARTICLE DATA
                     String[] tempMessage = data0.split(":");
 
-                    for (int i=0;i<=dataSet.get_MAX_ARTICLE_COLUMN()-1;i++) tempArticleData[0][i] = tempMessage[i];
-                    dataSet.setArticleData(tempArticleData);
+//                    for (int i=0;i<=dataSet.get_MAX_ARTICLE_COLUMN()-1;i++) tempArticleData[0][i] = tempMessage[i];
+//                    dataSet.setArticleData(tempArticleData);
                 }
                 }
 
