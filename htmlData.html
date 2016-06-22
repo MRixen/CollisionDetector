@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Roboter Informations-System</title>
+    <META HTTP-EQUIV="refresh" CONTENT="2"/>
+    <style>
+        header {
+            background-color: #02489D;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        nav {
+            line-height: 30px;
+            background-color: #eeeeee;
+            height: 600px;           
+            width: 300px;
+            float: left;
+            padding: 5px;
+        }
+
+        section {           
+            height: 600px;           
+            width:600px;
+            float: left;
+            padding: 10px;
+            background-color: #eeeeee;
+        }
+
+        article {
+            height: 600px;
+            float: left;            
+            width:600px;
+            padding: 10px;
+            background-color: #eeeeee;
+        }
+
+
+        footer {
+            background-color: #02489D;
+            color: white;
+            clear: both;
+            text-align: center;
+            padding: 5px;
+        }
+
+        h1{
+            font-size: xx-large;
+            color: white;
+        }
+
+        table, th, td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        #table_nav_col_group{
+            background-color: white;           
+        }
+
+        #table_nav_col_1{
+            width: 120px
+        }
+
+        #table_nav_col_2{
+            width: 80px
+        }
+
+        
+        #table_nav_col_articledata{
+            width: 180px;
+            height: 60px;            
+        }
+
+        #table_nav_col_information{
+            width: 120px;
+            height: 60px;            
+        }
+        
+        #table_nav_col_3{
+            width: 80px
+        }
+
+        #table_nav_cell_heavy{
+            color: black;
+            font-weight: bold;   
+            font-size: large;   
+            height: 40px;     
+        }
+
+        #table_nav_cell_low{
+            color: black; 
+            font-size: medium;   
+            height: 60px;     
+        }
+
+        #table_nav_cell_low_small{
+            color: black; 
+            font-size: medium;   
+            height: 30px;     
+        }
+
+        caption{
+            color: black;
+            font-weight: bold;  
+            font-size: small;  
+            text-align: left
+        }
+
+        #whole_document{
+            margin: auto 10px;
+            width: auto;
+            height: 2000px;
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+
+<body id="whole_document">
+
+    <header>
+        <h1>Informations-System</h1>
+    </header>
+
+    <nav>
+        <table id="table_nav">
+            <caption>Aktuelle Daten</caption>
+            <colgroup id="table_nav_col_group">
+                <col id="table_nav_col_1">
+                <col id="table_nav_col_2">
+            </colgroup>
+            <tbody id="table_nav_row_group">
+                <tr id="table_nav_row_1">
+                    <td id="table_nav_cell_heavy">Soll</td>
+                    <td id="table_nav_cell_low_small"> "+production_soll+" </td>
+                </tr>
+                <tr id="table_nav_row_2">
+                    <td id="table_nav_cell_heavy">Ist</td>
+                    <td id="table_nav_cell_low_small"> "+production_ist+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_heavy">Trend</td>
+                    <td id="table_nav_cell_low_small"> "+production_trend+" </td>
+                </tr>
+
+            </tbody>
+            </table>
+        <p></p>
+        <table id="table_nav">
+            <caption></caption>
+            <colgroup id="table_nav_col_group">
+                <col id="table_nav_col_1">
+                <col id="table_nav_col_2">
+            </colgroup>
+            <tbody id="table_nav_row_group">
+                <tr id="table_nav_row_4">
+                    <td id="table_nav_cell_heavy">Zykluszeit</td>
+                    <td id="table_nav_cell_low_small"> "+cycleTime+" </td>
+                </tr>
+            </tbody>
+        </table>
+</nav>
+
+    <section>
+        <table id="table_nav">
+            <caption>Artikeldaten</caption>
+            <colgroup id="table_nav_col_group">
+                <col id="table_nav_col_articledata">
+                <col id="table_nav_col_articledata">
+                <col id="table_nav_col_articledata">
+            </colgroup>
+            <tbody id="table_nav_row_group">
+                <tr id="table_nav_row_1">
+                    <td id="table_nav_cell_heavy">Name</td>
+                    <td id="table_nav_cell_heavy">Anzahl</td>
+                    <td id="table_nav_cell_heavy">Zykluszeit</td>
+                </tr>
+                <tr id="table_nav_row_2">
+                    <td id="table_nav_cell_low"> "+articleData[0][0]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[0][1]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[0][2]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low"> "+articleData[1][0]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[1][1]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[1][2]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low"> "+articleData[2][0]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[2][1]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[2][2]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low"> "+articleData[3][0]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[3][1]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[3][2]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low"> "+articleData[4][0]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[4][1]+" </td>
+                    <td id="table_nav_cell_low"> "+articleData[4][2]+" </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <article>
+        <table id="table_nav">
+            <caption>Maschinendaten</caption>
+            <colgroup id="table_nav_col_group">
+                <col id="table_nav_col_information">
+                <col id="table_nav_col_information">
+                <col id="table_nav_col_information">
+                <col id="table_nav_col_information">
+                <col id="table_nav_col_information">
+                <col id="table_nav_col_information">
+            </colgroup>
+            <tbody id="table_nav_row_group">
+                <tr id="table_nav_row_1">
+                    <td id="table_nav_cell_heavy">Name</td>
+                    <td id="table_nav_cell_heavy">Wert</td>
+                    <td id="table_nav_cell_heavy">Name</td>
+                    <td id="table_nav_cell_heavy">Wert</td>
+                    <td id="table_nav_cell_heavy">Name</td>
+                    <td id="table_nav_cell_heavy">Wert</td>
+                </tr>
+                <tr id="table_nav_row_2">
+                    <td id="table_nav_cell_low">Maschinen-Typ</td>
+                    <td id="table_nav_cell_low"> "+machineData[0]+" </td>
+                    <td id="table_nav_cell_low">Projekt-Nr.</td>
+                    <td id="table_nav_cell_low"> "+machineData[1]+" </td>
+                    <td id="table_nav_cell_low">Baujahr</td>
+                    <td id="table_nav_cell_low"> "+machineData[2]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low">Abnahme rbc</td>
+                    <td id="table_nav_cell_low"> "+machineData[3]+" </td>
+                    <td id="table_nav_cell_low">Abnahme Scheideler</td>
+                    <td id="table_nav_cell_low"> "+machineData[4]+" </td>
+                    <td id="table_nav_cell_low">Serien-Nr.</td>
+                    <td id="table_nav_cell_low"> "+machineData[5]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low">Software-Nr.</td>
+                    <td id="table_nav_cell_low"> "+machineData[6]+" </td>
+                    <td id="table_nav_cell_low">Robotertyp</td>
+                    <td id="table_nav_cell_low"> "+machineData[7]+" </td>
+                    <td id="table_nav_cell_low">Steuerungs-ID</td>
+                    <td id="table_nav_cell_low"> "+machineData[8]+" </td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low">HMI Sprache</td>
+                    <td id="table_nav_cell_low"> "+machineData[9]+" </td>
+                    <td id="table_nav_cell_low">Roboter Vmax [mm/s]</td>
+                    <td id="table_nav_cell_low"> "+machineData[10]+" </td>
+                    <td id="table_nav_cell_low"></td>
+                    <td id="table_nav_cell_low"></td>
+                </tr>
+                <tr id="table_nav_row_3">
+                    <td id="table_nav_cell_low">Betriebsstunden</td>
+                    <td id="table_nav_cell_low"> "+machineData[11]+" </td>
+                    <td id="table_nav_cell_low">Aktueller OV [%]</td>
+                    <td id="table_nav_cell_low"> "+machineData[12]+" </td>
+                    <td id="table_nav_cell_low"></td>
+                    <td id="table_nav_cell_low"></td>
+                </tr>            
+            </tbody>
+        </table>
+     </article>
+
+    <footer>
+        Copyright rbc Fördertechnik GmbH
+    </footer>
+
+</body>
+</html>

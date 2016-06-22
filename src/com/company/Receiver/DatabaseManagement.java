@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 /**
  * Created by manuel.rixen on 07.06.2016.
  */
-public class Wordpress {
+public class DatabaseManagement {
 
     private Connection conn = null;
     private String dbUserName = "root"; // MySQL database username
@@ -24,13 +24,13 @@ public class Wordpress {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String insertSql = "UPDATE production_actual SET " + fieldId + "='" + fieldValue + "' WHERE " + fieldId + ";";
+        String insertSql = "UPDATE production_actual SET " + fieldId + "='" + fieldValue + "' WHERE " + 1 + ";";
         try {
             int val = st.executeUpdate(insertSql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Database updated");
+//        System.out.println("DatabaseManagement updated");
     }
 
     public void updateMachineData(String fieldId, String fieldValue){
@@ -40,13 +40,13 @@ public class Wordpress {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String insertSql = "UPDATE machine_data SET Soll='" + fieldId + "' WHERE " + fieldValue + ";";
+        String insertSql = "UPDATE machine_data SET " + fieldId + "='" + fieldValue + "' WHERE " + 1 + ";";
         try {
             int val = st.executeUpdate(insertSql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Database updated");
+//        System.out.println("DatabaseManagement updated");
     }
 
     public void connectToDb() {
@@ -70,7 +70,7 @@ public class Wordpress {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Database connection established.");
+        System.out.println("DatabaseManagement connection established.");
     }
 
     public void disconnectFromDb(){
@@ -80,7 +80,7 @@ public class Wordpress {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            System.out.println ("Database connection closed.");
+            System.out.println ("DatabaseManagement connection closed.");
 
         }
     }

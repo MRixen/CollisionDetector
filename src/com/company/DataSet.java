@@ -1,7 +1,6 @@
 package com.company;
 
 import com.company.Receiver.TeleBot;
-import com.company.Receiver.Wordpress;
 
 /**
  * Created by Manuel.Rixen on 28.04.2016.

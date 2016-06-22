@@ -1,23 +1,19 @@
 package com.company;
 
 import com.company.Receiver.Server;
-import com.company.Receiver.Wordpress;
-import com.company.Webserver.WebServerConfig;
-import com.company.Webserver.WebServerData;
-
-import java.io.IOException;
+import com.company.Receiver.DatabaseManagement;
 
 public class Main {
 
     private static DataSet dataSet;
-    private static Wordpress wordpress;
+    private static DatabaseManagement databaseManagement;
 
     public static void main(String[] args) {
 
         dataSet = new DataSet();
-        wordpress = new Wordpress();
+        databaseManagement = new DatabaseManagement();
         // Start server to receive event messages from robot controller and send messages via sms and telegram
-        new Server(dataSet, wordpress);
+        new Server(dataSet, databaseManagement);
 
 
         // TEST FOR WEBSERVER
