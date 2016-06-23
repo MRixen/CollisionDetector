@@ -31,12 +31,13 @@ public class ImagePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(img1, 5, 5, 500, 400, this);
-        g.drawImage(drawSomething(), 5, 5, 510, 410, this);
+        g.drawImage(img1, 5, 5, 730, 473, this);
+//        g.drawImage(drawSomething(), 5, 5, 740, 483, this);
+        g.drawImage(drawSomething(), 5, 5, 1000, 1000, this);
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(500, 500);
+        return new Dimension(800, 500);
     }
 
     private BufferedImage drawSomething(){
@@ -51,10 +52,12 @@ public class ImagePanel extends JPanel {
 
         // Calculate x / y offsets for the view (top, left, right, etc.)
         if(viewDescription.equals("top")) {
-            yOffset = 230;
+            yOffset = 620;
             xOffset = 290;
-            xCoordinate = xCoordinate*(-scaleFactorXtop);
-            yCoordinate = yCoordinate*(-scaleFactorYtop);
+//            xCoordinate = xCoordinate*(-scaleFactorXtop);
+            xCoordinate = 105*(-0.1f);
+//            yCoordinate = yCoordinate*(-scaleFactorYtop);
+            yCoordinate = -469*(-0.57f);
         }
         else if(viewDescription.equals("left")){
             yOffset = 500;
@@ -78,10 +81,11 @@ public class ImagePanel extends JPanel {
             yCoordinate = 75;
         }
         // Draw marker on image to show gripper location
-        BufferedImage bi = new BufferedImage(500, 400, BufferedImage.TYPE_INT_ARGB);
+//        BufferedImage bi = new BufferedImage(730, 473, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage bi = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = bi.createGraphics();
         graphics.setStroke(new BasicStroke(8));
-        graphics.setColor(Color.BLUE);
+        graphics.setColor(Color.RED);
         graphics.drawLine(xOffset - (((int) xCoordinate) + (lineLength / 2)), yOffset - (((int) yCoordinate) + (lineLength / 2)), xOffset - (((int) xCoordinate) - (lineLength / 2)), yOffset - (((int) yCoordinate) - (lineLength / 2)));
         graphics.drawLine(xOffset - (((int) xCoordinate) + (lineLength / 2) - 20), yOffset - (((int) yCoordinate) + (lineLength / 2)), xOffset - (((int) xCoordinate) - (lineLength / 2)) - 20, yOffset - (((int) yCoordinate) - (lineLength / 2)));
         graphics.drawOval(xOffset - ((int) xCoordinate) - lineLength, yOffset - ((int) yCoordinate) - lineLength, circDiameter, circDiameter);

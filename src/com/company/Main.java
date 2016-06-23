@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.Receiver.Server;
 import com.company.Receiver.DatabaseManagement;
+import com.company.Visualization.GripperLocation;
 
 public class Main {
 
@@ -32,10 +33,10 @@ public class Main {
 //        webServerThread.start();
 
         // TEST FOR GRIPPER LOCATION
-/*        GripperLocation gripperLocation = new GripperLocation();
+        GripperLocation gripperLocation = new GripperLocation();
         DataSet dataSet = new DataSet();
-        String[] tempMessage = {"174.07", "-446.683", "442.215"};
-        gripperLocation.generateImages(dataSet, tempMessage);*/
+        String[] tempMessage = {"105.827", "-469.828", "377.9"};
+        gripperLocation.generateImages(dataSet, tempMessage);
 
     }
 }

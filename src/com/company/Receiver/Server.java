@@ -22,6 +22,7 @@ public class Server implements Runnable {
     private String[] machineDataEntries = {"MachineData", "ProjectNo", "BuildYear", "PreAccept", "FinAccept", "SerialNo", "SoftwareSerial", "RobotType", "ControllerId", "IpAddress", "HmiLanguage", "RobSpeed", "ActOv", "DyteTime"};
     private String[][] tempArticleData;
     private DatabaseManagement databaseManagement;
+    // TODO Check size of tempMessage and allocate it
 
     public Server(DataSet dataSet, DatabaseManagement databaseManagement){
         gripperLocation = new GripperLocation();
@@ -87,15 +88,14 @@ public class Server implements Runnable {
                     // Get message for collision detect only
                     if(data1.equals(dataSet.getDiagnoseCmd()[0])) {
                         // GET COLLISION DATA
-
                         //Send message via sms
-/*                    try {
-                        // Send sms via script-execution
-                        Runtime.getRuntime().exec(dataSet.getCmdSendSms());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        System.out.println("Sending sms failed in Server-Thread. Exception thrown: " + e);
-                    }
+//                    try {
+//                        // Send sms via script-execution
+//                        Runtime.getRuntime().exec(dataSet.getCmdSendSms());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        System.out.println("Sending sms failed in Server-Thread. Exception thrown: " + e);
+//                    }
                         // Extract x, y, z from data0
                         String[] tempMessage = data0.split(":");
                         System.out.println("x: " + tempMessage[0]);
@@ -106,9 +106,9 @@ public class Server implements Runnable {
                         byte[][] images = gripperLocation.generateImages(dataSet, tempMessage);
 
                         // Send message and images to telegram
-                        teleBot.sendMessageToChat(dataSet.getChatId(), dataSet.getTelegramChatMessage());
-                        for (int i=0;i<=images.length-1;i++) teleBot.sendPhotoToChat(dataSet.getChatId(), images[i], dataSet.getImageNames()[i]);
-*/
+//                        teleBot.sendMessageToChat(dataSet.getChatId(), dataSet.getTelegramChatMessage());
+//                        for (int i=0;i<=images.length-1;i++) teleBot.sendPhotoToChat(dataSet.getChatId(), images[i], dataSet.getImageNames()[i]);
+
                     }
                     // Get message for logging only
                     else if(data1.equals(dataSet.getDiagnoseCmd()[1])){
@@ -128,7 +128,9 @@ public class Server implements Runnable {
                 else if(data1.equals(dataSet.getDiagnoseCmd()[4])){
                     // GET ARTICLE DATA
                     String[] tempMessage = data0.split(":");
-
+                        databaseManagement.updateArticleData("programName", tempMessage[0]);
+                        databaseManagement.updateArticleData("programId", tempMessage[1]);
+                        databaseManagement.updateArticleData("programNumber", tempMessage[2]);
 //                    for (int i=0;i<=dataSet.get_MAX_ARTICLE_COLUMN()-1;i++) tempArticleData[0][i] = tempMessage[i];
 //                    dataSet.setArticleData(tempArticleData);
                 }

@@ -49,6 +49,22 @@ public class DatabaseManagement {
 //        System.out.println("DatabaseManagement updated");
     }
 
+    public void updateArticleData(String fieldId, String fieldValue){
+        Statement st = null;
+        try {
+            st = conn.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String insertSql = "UPDATE article_data SET " + fieldId + "='" + fieldValue + "' WHERE " + 1 + ";";
+        try {
+            int val = st.executeUpdate(insertSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        System.out.println("DatabaseManagement updated");
+    }
+
     public void connectToDb() {
         Class forNam = null;
         try {

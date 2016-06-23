@@ -10,7 +10,7 @@ public class DataSet {
     public final String CMD_SEND_SMS = "/home/pi/Desktop/CMD_SEND_SMS.sh";
     public final String CMD_MODESWITCH = "/home/pi/Desktop/CMD_MODESWITCH.sh";
     public final String TELEGRAM_CHAT_MESSAGE = "Collision detected. Please look at the following pictures to decide remote restart via PickVision Stop / Start.";
-    private String IMAGE_PATH_NAME = "C:/Users/Manuel.Rixen/IdeaProjects/TelegramBot/";
+    private String IMAGE_PATH_NAME = "C:/Users/manuel.rixen/IdeaProjects/CollisionDetector/";
     private String[] IMAGE_NAMES = {"top", "left", "right", "front"};
     private final String SERVER_IP_ADDRESS = "127.0.0.1";
     private final int PORT = 4447;

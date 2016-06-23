@@ -19,11 +19,11 @@ public class GripperLocation {
         JFrame frame = new JFrame("Gripper Location");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(new Dimension(530, 460));
+        frame.setSize(new Dimension(730, 510));
 
         // Generate images one after the other to show gripper location
         //for (int i=0;i<=dataSet.getImageNames().length-1;i++) {
-        for (int i=1;i<=1;i++) {
+        for (int i=0;i<=0;i++) {
 
             frame.getContentPane().removeAll();
             frame.add(new ImagePanel(dataSet.getImagePathName()+dataSet.getImageNames()[i]+".png", dataSet.getImageNames()[i], coordinates));
