@@ -12,9 +12,9 @@ public class Main {
     public static void main(String[] args) {
 
         dataSet = new DataSet();
-        databaseManagement = new DatabaseManagement();
-        // Start server to receive event messages from robot controller and send messages via sms and telegram
-        new Server(dataSet, databaseManagement);
+//        databaseManagement = new DatabaseManagement();
+//        // Start server to receive event messages from robot controller and send messages via sms and telegram
+//        new Server(dataSet, databaseManagement);
 
 
         // TEST FOR WEBSERVER
@@ -35,7 +35,7 @@ public class Main {
         // TEST FOR GRIPPER LOCATION
         GripperLocation gripperLocation = new GripperLocation();
         DataSet dataSet = new DataSet();
-        String[] tempMessage = {"105.827", "-469.828", "377.9"};
+        String[] tempMessage = {"-365", "-630", "409.487"};
         gripperLocation.generateImages(dataSet, tempMessage);
 
     }

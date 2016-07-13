@@ -48,37 +48,49 @@ public class ImagePanel extends JPanel {
         float zCoordinate = Float.parseFloat(coordinates[2]);
         int lineLength = 20;
         int circDiameter = 40;
-        float scaleFactorXtop = 0.35f, scaleFactorYtop = 0.018f, scaleFactorZtop = 1f;
+        float scaleFactorX, scaleFactorY, scaleFactorZ = 1f;
 
         // Calculate x / y offsets for the view (top, left, right, etc.)
         if(viewDescription.equals("top")) {
-            yOffset = 620;
-            xOffset = 290;
-//            xCoordinate = xCoordinate*(-scaleFactorXtop);
-            xCoordinate = 105*(-0.1f);
-//            yCoordinate = yCoordinate*(-scaleFactorYtop);
-            yCoordinate = -469*(-0.57f);
+            yOffset = 630;
+            xOffset = 380;
+            if(xCoordinate<0) scaleFactorX = 0.48f;
+            else scaleFactorX = 1f;
+            scaleFactorY = -0.6f;
+
+            xCoordinate = xCoordinate*scaleFactorX;
+            yCoordinate = yCoordinate*scaleFactorY;
         }
         else if(viewDescription.equals("left")){
             yOffset = 500;
             xOffset = 360;
-            // TODO Remove this (its for simulation only)
+            // TODO Create new image without z-belt
             xCoordinate = -20;
             zCoordinate = 0;
         }
         else if(viewDescription.equals("right")){
-            yOffset = 230;
-            xOffset = 290;
-            // TODO Remove this (its for simulation only)
-            xCoordinate = 150;
-            yCoordinate = 75;
+            yOffset = 420;
+            xOffset = 390;
+            if(xCoordinate<0) scaleFactorX = 0.508f;
+            else scaleFactorX = 1f;
+            scaleFactorY = -0.356f;
+
+            xCoordinate = xCoordinate*scaleFactorX;
+            yCoordinate = yCoordinate*scaleFactorY;
         }
         else if(viewDescription.equals("front")){
-            yOffset = 230;
-            xOffset = 290;
-            // TODO Remove this (its for simulation only)
-            xCoordinate = 150;
-            yCoordinate = 75;
+            yOffset = 340;
+            xOffset = 720;
+
+            float xCoordinateTemp = xCoordinate;
+            float yCoordinateTemp = yCoordinate;
+
+            if(xCoordinate<0) scaleFactorX = -0.492f;
+            else scaleFactorX = -0.36f;
+            scaleFactorY = -0.66f;
+
+            yCoordinate = xCoordinateTemp*scaleFactorX;
+            xCoordinate = yCoordinateTemp*scaleFactorY;
         }
         // Draw marker on image to show gripper location
 //        BufferedImage bi = new BufferedImage(730, 473, BufferedImage.TYPE_INT_ARGB);

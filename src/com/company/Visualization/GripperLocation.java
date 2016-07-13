@@ -23,7 +23,7 @@ public class GripperLocation {
 
         // Generate images one after the other to show gripper location
         //for (int i=0;i<=dataSet.getImageNames().length-1;i++) {
-        for (int i=0;i<=0;i++) {
+        for (int i=3;i<=3;i++) {
 
             frame.getContentPane().removeAll();
             frame.add(new ImagePanel(dataSet.getImagePathName()+dataSet.getImageNames()[i]+".png", dataSet.getImageNames()[i], coordinates));
